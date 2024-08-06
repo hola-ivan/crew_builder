@@ -41,29 +41,33 @@ with st.sidebar:
 
     with st.expander("How to use", expanded=False):
         st.write("This app allows you to create an autonomous crew of agents that can work together to achieve a common goal. Define the number of agents, assign them roles, goals, backstories, tasks, and expected outputs. The agents will work sequentially to achieve the common goal, and the app will display the output of each agent.")
-        groq_api_key = st.text_input("Enter your Groq API key", type="password", help="You can get your API key from https://console.groq.com/keys")
-
+        
     with st.expander("About", expanded=False):
         st.write("This tool helps create autonomous crews using AI agents. The agents work together to achieve specified goals by performing assigned tasks sequentially.")
 
     with st.expander("FAQ", expanded=False):
         st.write("Frequently Asked Questions about the Autonomous Crew Builder tool.")
 
+    # Move API key input outside of the "How to use" expander
+    groq_api_key = st.text_input("Enter your Groq API key", type="password", help="You can get your API key from https://console.groq.com/keys")
+
 # Create a title for the Streamlit app
 st.title('Autonomous Crew Builder')
 
-# Fetch the API key from the input box or secrets
-if 'GROQ_API_KEY' in st.secrets:
-    groq_api_key = st.secrets["GROQ_API_KEY"]
-else:
-    groq_api_key = st.session_state.get('groq_api_key', '')
+# Check if the API key is provided
+if not groq_api_key:
+    st.warning("Please enter your Groq API key in the sidebar to use this application.")
+    st.stop()  # This will halt the execution of the app until an API key is provided
+
+# If we reach this point, we know we have an API key
+st.session_state['groq_api_key'] = groq_api_key
 
 # Initialize the Groq client with the API key
 client = Groq(api_key=groq_api_key)
 
 # Initialize the Groq Language Model with the API key and model details
 GROQ_LLM = ChatGroq(
-    api_key=groq_api_key,  # Ensure the API key is correctly passed here
+    api_key=groq_api_key,
     model="llama-3.1-70b-versatile"
 )
 
