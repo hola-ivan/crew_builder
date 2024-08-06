@@ -1,0 +1,10 @@
+# Ignore .streamlit directory
+.streamlit/
+
+# Ignore virtual environment directories
+env/
+venv/
+.venv/
+
+# Ignore VS Code settings
+.vscode/

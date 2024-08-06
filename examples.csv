@@ -1,0 +1,11 @@
+Number of Agents,Use Case,Agent 1 Role,Agent 2 Role,Agent 3 Role,Agent 4 Role,Agent 5 Role,Agent 6 Role,Agent 7 Role,Agent 8 Role,Agent 9 Role,Agent 10 Role
+2,Market Research and Product Development,Market Researcher,Product Developer,,,,,,,,
+3,Cybersecurity Threat Analysis,Threat Intelligence Analyst,Vulnerability Assessor,Incident Response Specialist,,,,,,,
+5,Personalized Education Curriculum Design,Learning Psychologist,Subject Matter Expert,Instructional Designer,Educational Technologist,Curriculum Evaluator,,,,,,
+7,Environmental Impact Assessment,Environmental Scientist,Ecological Modeler,Social Impact Analyst,Economic Analyst,Regulatory Compliance Specialist,Data Visualization Expert,Report Writer,,,
+10,Healthcare Diagnosis and Treatment Planning,Primary Care Physician,Specialist Consultant,Medical Researcher,Pharmacologist,Nutritionist,Physical Therapist,Mental Health Professional,Patient Advocate,Medical Ethicist,Health Insurance Analyst
+3,Financial Investment Strategy,Market Analyst,Risk Assessor,Portfolio Manager,,,,,,,
+5,Supply Chain Optimization,Demand Forecaster,Inventory Manager,Logistics Coordinator,Supplier Relations Manager,Data Analyst,,,,,,
+7,Legal Case Analysis and Preparation,Lead Attorney,Legal Researcher,Evidence Analyst,Witness Interviewer,Paralegal,Jury Consultant,Settlement Negotiator,,,
+2,Content Creation and Marketing Campaign,Content Creator,Marketing Strategist,,,,,,,,
+10,Urban Planning and Smart City Development,Urban Planner,Transportation Engineer,Environmental Sustainability Expert,Economic Development Specialist,Public Health Analyst,Technology Integration Specialist,Community Engagement Coordinator,Data Scientist,Infrastructure Planner,Policy Analyst
