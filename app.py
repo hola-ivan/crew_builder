@@ -52,110 +52,86 @@ business_context = st.text_area('Business Context and Challenges', help='Please 
 # Set the number of agents to 4
 number_of_agents = 4
 
-# Example data for pre-filling the form
+# Example data for agents
 example_data = [
     {
         "name": "Tlaloc",
         "role": "Digital Strategy Consultant",
-        "goal": "To help solopreneurs and small businesses create effective digital strategies that align with their business goals.",
-        "backstory": "An expert in working with small businesses, Tlaloc focuses on developing cost-effective digital roadmaps that can scale with growth.",
-        "task": "Design a digital strategy for an early-stage startup, focusing on key priorities like online presence, customer acquisition, and scaling operations.",
+        "goal_template": "To help solopreneurs and small businesses create effective digital strategies that align with their business goals, considering the context: {}.",
+        "task_template": "Design a digital strategy for a business, focusing on key priorities like online presence, customer acquisition, and scaling operations. Context: {}.",
         "output": "A digital strategy plan with key initiatives in website development, social media marketing, and customer management, including budget considerations."
     },
     {
         "name": "Tonantzin",
         "role": "Cloud Infrastructure Specialist",
-        "goal": "To help startups and small businesses leverage cloud technology to streamline operations and reduce costs.",
-        "backstory": "Specializing in affordable cloud solutions, Tonantzin helps clients implement cloud systems that grow with their business needs.",
-        "task": "Set up a cloud infrastructure for a solopreneur’s e-commerce business, ensuring scalability and low operational costs.",
+        "goal_template": "To help businesses leverage cloud technology to streamline operations and reduce costs in line with the given context: {}.",
+        "task_template": "Set up a cloud infrastructure, ensuring scalability and low operational costs based on the business needs. Context: {}.",
         "output": "A cloud architecture with clear implementation steps, cost projections, and automation features tailored to small business budgets."
     },
     {
         "name": "Arminius",
         "role": "Analytics & Automation Consultant",
-        "goal": "To help solopreneurs and startups leverage data and automation to optimize their operations and improve customer engagement.",
-        "backstory": "With a background in startups, Arminius focuses on affordable analytics and automation tools that help small businesses track growth and customer behavior.",
-        "task": "Implement an automated analytics system to track customer engagement and sales metrics for a small online business.",
+        "goal_template": "To help businesses leverage data and automation to optimize operations, focusing on customer engagement in the context: {}.",
+        "task_template": "Implement an automated analytics system to track customer engagement and sales metrics for the business. Context: {}.",
         "output": "A dashboard providing real-time data on key performance indicators (KPIs), integrated with automated email and CRM workflows."
     },
     {
         "name": "Thusnelda",
         "role": "Digital Marketing & Growth Consultant",
-        "goal": "To help small businesses and solopreneurs scale their operations through effective digital marketing strategies.",
-        "backstory": "A digital marketing expert, Thusnelda has worked with early-stage startups to build brand awareness, acquire customers, and drive growth.",
-        "task": "Develop and execute a digital marketing strategy, including SEO, social media, and email campaigns, for a small business looking to expand its customer base.",
+        "goal_template": "To help businesses scale their operations through effective digital marketing strategies, with a focus on growth within the context: {}.",
+        "task_template": "Develop and execute a digital marketing strategy, including SEO, social media, and email campaigns for the business. Context: {}.",
         "output": "A comprehensive digital marketing plan with detailed timelines, budget allocations, and projected ROI, focusing on lead generation and brand growth."
     }
 ]
 
-# Agent details collection with pre-filled data
-namelist, rolelist, goallist, backstorylist, taskdescriptionlist, outputlist = [], [], [], [], [], []
+# Update agent details with the business context
+def update_agent_goals_and_tasks(context):
+    updated_agents = []
+    for agent_data in example_data:
+        agent_data["goal"] = agent_data["goal_template"].format(context)
+        agent_data["task"] = agent_data["task_template"].format(context)
+        updated_agents.append(agent_data)
+    return updated_agents
+
+# If a business context is provided, update the goals and tasks accordingly
+if business_context:
+    updated_data = update_agent_goals_and_tasks(business_context)
+else:
+    updated_data = example_data  # Default example data
+
+# Set the number of agents to 4
+number_of_agents = 4
+
+# Display agent details with updated goals and tasks
+namelist, rolelist, goallist, tasklist, outputlist = [], [], [], [], []
 for i in range(number_of_agents):
-    example = example_data[i]
+    agent = updated_data[i]
     with st.expander(f"Agent {i+1} Details"):
-        agent_name = st.text_input(f"Name of agent {i+1}", value=example["name"])
+        agent_name = st.text_input(f"Name of agent {i+1}", value=agent["name"])
         namelist.append(agent_name)
-        rolelist.append(st.text_input(f"Role of {agent_name}", value=example["role"]))
-        goallist.append(st.text_input(f"Goal of {agent_name}", value=example["goal"]))
-        backstorylist.append(st.text_input(f"Backstory of {agent_name}", value=example["backstory"]))
-        taskdescriptionlist.append(st.text_input(f"Task of {agent_name}", value=example["task"]))
-        outputlist.append(st.text_input(f"Expected output of {agent_name}", value=example["output"]))
+        rolelist.append(st.text_input(f"Role of {agent_name}", value=agent["role"]))
+        goallist.append(st.text_area(f"Goal of {agent_name}", value=agent["goal"]))
+        tasklist.append(st.text_area(f"Task of {agent_name}", value=agent["task"]))
+        outputlist.append(st.text_area(f"Expected output of {agent_name}", value=agent["output"]))
 
 # Crew creation and results display
-if st.button('Create Crew'):
-    agentlist, tasklist = [], []
+if st.button('Start'):
+    agentlist, tasklist_full = [], []
     for i in range(number_of_agents):
-        agent = Agent(role=rolelist[i], goal=goallist[i], backstory=backstorylist[i], llm=GROQ_LLM, verbose=True, max_iter=5)
+        agent = Agent(role=rolelist[i], goal=goallist[i], llm=GROQ_LLM, verbose=True)
         agentlist.append(agent)
-        tasklist.append(Task(description=taskdescriptionlist[i], expected_output=outputlist[i], agent=agent))
+        tasklist_full.append(Task(description=tasklist[i], expected_output=outputlist[i], agent=agent))
     
-    crew = Crew(agents=agentlist, tasks=tasklist, verbose=True, process=Process.sequential, full_output=True)
+    crew = Crew(agents=agentlist, tasks=tasklist_full, verbose=True, process=Process.sequential, full_output=True)
     results = crew.kickoff()
 
-    # Summarize results using Groq API
-    summary_content = "\n".join([f"{namelist[i]} ({rolelist[i]}): {task.output}" for i, task in enumerate(tasklist)])
-    summary_input = {"role": "user", "content": f"Summarize the following results, considering the client's business context: {business_context}\n{summary_content}"}
-
-    completion = client.chat.completions.create(model="llama-3.1-70b-versatile", messages=[summary_input], temperature=1)
-    summary_text = completion.choices[0].message.content
-
-    # Display results and summary
+    # Displaying results
     st.markdown("---")
-    st.subheader("Summary")
-    st.markdown(summary_text)
-
     st.subheader("Results")
     for i in range(number_of_agents):
-        st.write(f"{namelist[i]}'s ({rolelist[i]}) Output: {tasklist[i].output}")
-
-    # PDF Generation
-    pdf = FPDF()
-    pdf.add_page()
-    pdf.set_font("Arial", size=12)
-
-    # Add business context
-    pdf.cell(200, 10, txt="Business Context and Challenges", ln=True, align='L')
-    pdf.multi_cell(0, 10, business_context)
-
-    # Add summary
-    pdf.cell(200, 10, txt="Summary", ln=True, align='L')
-    pdf.multi_cell(0, 10, summary_text)
-
-    # Add individual agent outputs
-    pdf.cell(200, 10, txt="Results", ln=True, align='L')
-    for i in range(number_of_agents):
-        pdf.cell(200, 10, txt=f"{namelist[i]}'s ({rolelist[i]}) Output:", ln=True, align='L')
-        pdf.multi_cell(0, 10, tasklist[i].output)
-
-    # Save the PDF to a file
-    pdf_output = "consulting_tool_output.pdf"
-    pdf.output(pdf_output)
-
-    # Provide the PDF for download
-    with open(pdf_output, "rb") as file:
-        st.download_button("Download Results as PDF", file, file_name=pdf_output)
+        st.write(f"{namelist[i]}'s ({rolelist[i]}) Output: {tasklist_full[i].output}")
 else:
-    st.write('⬆️Ready to start')
+    st.write('⬆️ Ready to start')
 
 # Contact section
 st.markdown("---")
