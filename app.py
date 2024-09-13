@@ -22,7 +22,7 @@ import pandas as pd
 import csv
 
 # Set page configuration
-st.set_page_config(page_title="Autonomous Crew Builder", layout="wide")
+st.set_page_config(page_title="effiweb solutions Consulting Tool", layout="wide")
 
 # Custom CSS for aesthetics
 st.markdown("""
@@ -135,13 +135,9 @@ with st.sidebar:
         """)
 
 # Create a title for the Streamlit app
-st.title('Autonomous Crew Builder')
+st.title('effiweb solutions Consulting Tool')
 
-# Fetch the API key from the input box or secrets
-if 'GROQ_API_KEY' in st.secrets:
-    groq_api_key = st.secrets["GROQ_API_KEY"]
-else:
-    groq_api_key = st.session_state.get('groq_api_key', '')
+groq_api_key = st.secrets["GROQ_API_KEY"]
 
 # Initialize the Groq client with the API key
 client = Groq(api_key=groq_api_key)
