@@ -228,7 +228,7 @@ toollist = []
 # Collect details for each agent using collapsible sections and pre-fill with example data
 for i in range(0, number_of_agents):
     example = example_data[i] if i < len(example_data) else {"name": "", "role": "", "goal": "", "backstory": "", "task": "", "output": ""}
-    with st.expander(f"Agent {i+1} Details", expanded=True):
+    with st.expander(f"Agent {i+1} Details", expanded=False):
         agent_name = st.text_input(f"Enter the name of agent {i+1}", value=example["name"])
         namelist.append(agent_name)
         role = st.text_input(f"Enter the role of agent {agent_name}", value=example["role"])
