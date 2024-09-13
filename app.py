@@ -98,14 +98,15 @@ for i in range(number_of_agents):
         outputlist.append(st.text_input(f"Expected output of {agent_name}", value=example["output"]))
 
 # Crew creation and results display
-if st.button('Create Crew'):
+if st.button('Start'):
     agentlist, tasklist = [], []
     for i in range(number_of_agents):
         agent = Agent(role=rolelist[i], goal=goallist[i], backstory=backstorylist[i], llm=GROQ_LLM, verbose=True, max_iter=5)
         agentlist.append(agent)
         tasklist.append(Task(description=taskdescriptionlist[i], expected_output=outputlist[i], agent=agent))
     
-    crew = Crew(agents=agentlist, tasks=tasklist, verbose=2, process=Process.sequential, full_output=True)
+    # Fix: verbose should be a boolean
+    crew = Crew(agents=agentlist, tasks=tasklist, verbose=True, process=Process.sequential, full_output=True)
     results = crew.kickoff()
 
     # Summary generation using Groq API
@@ -124,7 +125,8 @@ if st.button('Create Crew'):
     for i in range(number_of_agents):
         st.write(f"{namelist[i]}'s ({rolelist[i]}) Output: {tasklist[i].output}")
 else:
-    st.write('Click to create the crew.')
+    st.write('⬆️Ready to start')
+
 
 # Contact section
 st.markdown("---")
