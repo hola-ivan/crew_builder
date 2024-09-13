@@ -6,7 +6,6 @@ from crewai import Crew, Agent, Task, Process
 import pandas as pd
 import csv
 import os
-from fpdf import FPDF  # PDF generation
 
 # Set page configuration
 st.set_page_config(page_title="effiweb solutions Consulting Tool", layout="wide")
