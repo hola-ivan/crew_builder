@@ -24,14 +24,49 @@ st.set_page_config(page_title="Autonomous Crew Builder", layout="wide")
 
 # Custom CSS for aesthetics
 st.markdown("""
-    <style>
-        .main { background-color: #f4ebd0; }
-        .stButton>button { background-color: #ffcc53; color: #122620; }
-        .stTextInput>div>div>input { color: #122620; }
-        .stTextInput>div>div>label { color: #122620; }
-        .stTextArea>div>div>textarea { color: #122620; }
-        .stTextArea>div>div>label { color: #122620; }
-    </style>
+<style>
+    /* Main background in a light shade of white */
+    .main { 
+        background-color: #f5f7fa; /* light white-blue */
+    }
+
+    /* Button styling with modern indigo */
+    .stButton>button { 
+        background-color: #4f46e5; /* indigo */
+        color: #ffffff; /* white */
+        border-radius: 5px;
+        border: none;
+        padding: 10px 20px;
+    }
+
+    /* Text input field styling with dark blue text */
+    .stTextInput>div>div>input { 
+        color: #1e3a8a; /* dark blue */
+        background-color: #e0f2fe; /* light blue */
+        border-radius: 5px;
+        padding: 5px;
+    }
+
+    /* Label styling for input fields */
+    .stTextInput>div>div>label { 
+        color: #3b82f6; /* medium blue */
+        font-weight: bold;
+    }
+
+    /* Textarea styling */
+    .stTextArea>div>div>textarea { 
+        color: #1e3a8a; /* dark blue */
+        background-color: #e0f2fe; /* light blue */
+        border-radius: 5px;
+        padding: 5px;
+    }
+
+    /* Label styling for text areas */
+    .stTextArea>div>div>label { 
+        color: #3b82f6; /* medium blue */
+        font-weight: bold;
+    }
+</style>
 """, unsafe_allow_html=True)
 
 # Define collapsible sidebar sections
@@ -53,10 +88,7 @@ with st.sidebar:
 st.title('Autonomous Crew Builder')
 
 # Fetch the API key from the input box or secrets
-if 'GROQ_API_KEY' in st.secrets:
-    groq_api_key = st.secrets["GROQ_API_KEY"]
-else:
-    groq_api_key = st.session_state.get('groq_api_key', '')
+groq_api_key = st.secrets["GROQ_API_KEY"]
 
 # Initialize the Groq client with the API key
 client = Groq(api_key=groq_api_key)
@@ -68,12 +100,13 @@ GROQ_LLM = ChatGroq(
 )
 
 # Ask the user to enter the number of agents that should be part of the crew
-number_of_agents = st.number_input('Enter the number of agents that should be part of the crew', min_value=1, max_value=10, value=3)
+# number_of_agents = st.number_input('Enter the number of agents that should be part of the crew', min_value=1, max_value=10, value=3)
+number_of_agents = 4
 
 # Example data for pre-filling the form
 example_data = [
     {
-        "name": "Aiden",
+        "name": "Tlaloc",
         "role": "Digital Strategy Consultant",
         "goal": "To help solopreneurs and small businesses create effective digital strategies that align with their business goals.",
         "backstory": "An expert in working with small businesses, Aiden focuses on developing cost-effective digital roadmaps that can scale with growth.",
@@ -81,7 +114,7 @@ example_data = [
         "output": "A digital strategy plan with key initiatives in website development, social media marketing, and customer management, including budget considerations."
     },
     {
-        "name": "Sofia",
+        "name": "Tonantzin",
         "role": "Cloud Infrastructure Specialist",
         "goal": "To help startups and small businesses leverage cloud technology to streamline operations and reduce costs.",
         "backstory": "Specializing in affordable cloud solutions, Sofia helps clients implement cloud systems that grow with their business needs.",
@@ -89,7 +122,7 @@ example_data = [
         "output": "A cloud architecture with clear implementation steps, cost projections, and automation features tailored to small business budgets."
     },
     {
-        "name": "Liam",
+        "name": "Arminius",
         "role": "Analytics & Automation Consultant",
         "goal": "To help solopreneurs and startups leverage data and automation to optimize their operations and improve customer engagement.",
         "backstory": "With a background in startups, Liam focuses on affordable analytics and automation tools that help small businesses track growth and customer behavior.",
@@ -97,7 +130,7 @@ example_data = [
         "output": "A dashboard providing real-time data on key performance indicators (KPIs), integrated with automated email and CRM workflows."
     },
     {
-        "name": "Olivia",
+        "name": "Thusnelda",
         "role": "Digital Marketing & Growth Consultant",
         "goal": "To help small businesses and solopreneurs scale their operations through effective digital marketing strategies.",
         "backstory": "A digital marketing expert, Olivia has worked with early-stage startups to build brand awareness, acquire customers, and drive growth.",
@@ -134,7 +167,7 @@ for i in range(0, number_of_agents):
         outputlist.append(output)
 
 # Create Crew and display results
-if st.button('Create Crew'):
+if st.button('Start'):
     agentlist = []
     tasklist = []
     for i in range(number_of_agents):
@@ -186,7 +219,7 @@ if st.button('Create Crew'):
         model="llama-3.1-70b-versatile",
         messages=[summary_input],
         temperature=1,
-        max_tokens=1024,
+        max_tokens=4096,
         top_p=1,
         stream=False
     )
@@ -212,8 +245,8 @@ if st.button('Create Crew'):
         st.markdown(f"## {namelist[i]}'s Output")
         st.write(f"{tasklist[i].output}")
 else:
-    st.write('Please click the button to create the crew and see the results')
+    st.write('Please click the "Start" button to see the results')
 
 # Add a call to action to contact
 st.markdown("---")
-st.write("If you have any questions or need assistance, feel free to contact me at [blog@holaivan.tech](mailto:blog@holaivan.tech).")
+st.write("If you have any questions or need assistance, feel free to contact me at [effiwebsolutions@holaivan.tech](mailto:effiwebsolutions@holaivan.tech).")
