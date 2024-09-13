@@ -75,17 +75,64 @@ st.markdown("""
 # Define collapsible sidebar sections
 with st.sidebar:
     with st.expander("Contact", expanded=True):
-        st.write("For any inquiries, contact me at [blog@holaivan.tech](mailto:effiwebsolutions@holaivan.tech)")
-
-    with st.expander("How to use", expanded=False):
-        st.write("This app allows you to create an autonomous crew of agents that can work together to achieve a common goal. Define the number of agents, assign them roles, goals, backstories, tasks, and expected outputs. The agents will work sequentially to achieve the common goal, and the app will display the output of each agent.")
-        groq_api_key = st.text_input("Enter your Groq API key", type="password", help="You can get your API key from https://console.groq.com/keys")
+        st.write("For any inquiries, contact me at [effiwebsolutions@holaivan.tech](mailto:effiwebsolutions@holaivan.tech)")
 
     with st.expander("About", expanded=False):
-        st.write("This tool helps create autonomous crews using AI agents. The agents work together to achieve specified goals by performing assigned tasks sequentially.")
+        st.write("""
+        The effiweb solutions **Consulting Tool** helps create autonomous crews using AI agents. These agents work together to achieve specified goals by performing assigned tasks sequentially.
+
+        **Disclaimer**: This tool is for educational purposes only and is not intended to replace professional consulting or business services. Always consult with a professional for tailored advice and solutions.
+        """)
 
     with st.expander("FAQ", expanded=False):
-        st.write("Frequently Asked Questions about the Autonomous Crew Builder tool.")
+        st.write("""
+        **Q: What is the purpose of this tool?**  
+        A: This tool is designed to provide digital solutions and strategies for solopreneurs, early-stage startups, and small businesses. It helps with creating effective digital strategies, implementing cloud infrastructure, and utilizing data and automation.
+
+        **Q: Is this tool a replacement for professional consulting?**  
+        A: No, this tool is for educational purposes only. It offers general advice and recommendations but should not replace professional consulting or business services. For tailored advice, consult with a professional.
+
+        **Q: How can I use this tool effectively?**  
+        A: To use this tool effectively, follow the provided guidelines for digital strategy, cloud infrastructure, analytics, and digital marketing. Adjust the recommendations based on your specific business needs and goals.
+
+        **Q: How do I get help if I encounter issues?**  
+        A: For assistance, please refer to the [Contact](mailto:effiwebsolutions@holaivan.tech) section.
+
+        **Q: Are there any costs associated with using this tool?**  
+        A: The tool itself is provided for educational purposes and does not have a cost. However, implementing recommendations may involve costs depending on your chosen solutions and services.
+        """)
+
+    with st.expander("Acknowledgements", expanded=False):
+        st.write("""
+        This tool is based on the work of the original repository licensed under the MIT License. 
+
+        **Original Project**: [DriesFaems/crew_builder](https://github.com/DriesFaems/crew_builder)
+
+        **MIT License**:
+        ```
+        MIT License
+
+        Copyright (c) 2024 Ivan Escamilla Rodriguez
+
+        Permission is hereby granted, free of charge, to any person obtaining a copy
+        of this software and associated documentation files (the "Software"), to deal
+        in the Software without restriction, including without limitation the rights
+        to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+        copies of the Software, and to permit persons to whom the Software is
+        furnished to do so, subject to the following conditions:
+
+        The above copyright notice and this permission notice shall be included in
+        all copies or substantial portions of the Software.
+
+        THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+        OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+        FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
+        THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+        LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+        OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+        THE SOFTWARE.
+        ```
+        """)
 
 # Create a title for the Streamlit app
 st.title('Autonomous Crew Builder')
