@@ -47,7 +47,7 @@ client = Groq(api_key=groq_api_key)
 GROQ_LLM = ChatGroq(api_key=groq_api_key, model="llama-3.1-70b-versatile")
 
 # Input: Business context and challenges
-business_context = st.text_area('Describe your business context and the challenges you are facing')
+business_context = st.text_area('Business Context and Challenges', help='Please describe your business context and the challenges you are facing')
 
 # Set the number of agents to 4
 number_of_agents = 4
@@ -62,7 +62,30 @@ example_data = [
         "task": "Design a digital strategy for an early-stage startup, focusing on key priorities like online presence, customer acquisition, and scaling operations.",
         "output": "A digital strategy plan with key initiatives in website development, social media marketing, and customer management, including budget considerations."
     },
-    # Other agent data...
+    {
+        "name": "Tonantzin",
+        "role": "Cloud Infrastructure Specialist",
+        "goal": "To help startups and small businesses leverage cloud technology to streamline operations and reduce costs.",
+        "backstory": "Specializing in affordable cloud solutions, Tonantzin helps clients implement cloud systems that grow with their business needs.",
+        "task": "Set up a cloud infrastructure for a solopreneur’s e-commerce business, ensuring scalability and low operational costs.",
+        "output": "A cloud architecture with clear implementation steps, cost projections, and automation features tailored to small business budgets."
+    },
+    {
+        "name": "Arminius",
+        "role": "Analytics & Automation Consultant",
+        "goal": "To help solopreneurs and startups leverage data and automation to optimize their operations and improve customer engagement.",
+        "backstory": "With a background in startups, Arminius focuses on affordable analytics and automation tools that help small businesses track growth and customer behavior.",
+        "task": "Implement an automated analytics system to track customer engagement and sales metrics for a small online business.",
+        "output": "A dashboard providing real-time data on key performance indicators (KPIs), integrated with automated email and CRM workflows."
+    },
+    {
+        "name": "Thusnelda",
+        "role": "Digital Marketing & Growth Consultant",
+        "goal": "To help small businesses and solopreneurs scale their operations through effective digital marketing strategies.",
+        "backstory": "A digital marketing expert, Thusnelda has worked with early-stage startups to build brand awareness, acquire customers, and drive growth.",
+        "task": "Develop and execute a digital marketing strategy, including SEO, social media, and email campaigns, for a small business looking to expand its customer base.",
+        "output": "A comprehensive digital marketing plan with detailed timelines, budget allocations, and projected ROI, focusing on lead generation and brand growth."
+    }
 ]
 
 # Agent details collection with pre-filled data
