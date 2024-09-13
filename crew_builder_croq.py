@@ -73,30 +73,39 @@ number_of_agents = st.number_input('Enter the number of agents that should be pa
 # Example data for pre-filling the form
 example_data = [
     {
-        "name": "Robin",
-        "role": "Content Researcher",
-        "goal": "To gather the latest trends and insights in marketing research to include in the newsletter.",
-        "backstory": "An expert in marketing analytics with a knack for finding emerging trends and valuable data.",
-        "task": "Research and compile a list of recent studies, reports, and articles related to marketing research.",
-        "output": "A comprehensive list of at least 10 recent sources, with summaries highlighting key insights."
+        "name": "Aiden",
+        "role": "Digital Strategy Consultant",
+        "goal": "To help solopreneurs and small businesses create effective digital strategies that align with their business goals.",
+        "backstory": "An expert in working with small businesses, Aiden focuses on developing cost-effective digital roadmaps that can scale with growth.",
+        "task": "Design a digital strategy for an early-stage startup, focusing on key priorities like online presence, customer acquisition, and scaling operations.",
+        "output": "A digital strategy plan with key initiatives in website development, social media marketing, and customer management, including budget considerations."
     },
     {
-        "name": "Maria",
-        "role": "Newsletter Writer",
-        "goal": "To create engaging and informative content for the newsletter based on the research provided.",
-        "backstory": "A skilled writer with experience in crafting compelling newsletters and a deep understanding of marketing.",
-        "task": "Write the newsletter, including an introduction, key findings from the research, and actionable recommendations for readers.",
-        "output": "A polished draft of the newsletter, ready for review, including a catchy introduction, detailed sections on research findings, and a conclusion with actionable insights."
+        "name": "Sofia",
+        "role": "Cloud Infrastructure Specialist",
+        "goal": "To help startups and small businesses leverage cloud technology to streamline operations and reduce costs.",
+        "backstory": "Specializing in affordable cloud solutions, Sofia helps clients implement cloud systems that grow with their business needs.",
+        "task": "Set up a cloud infrastructure for a solopreneur’s e-commerce business, ensuring scalability and low operational costs.",
+        "output": "A cloud architecture with clear implementation steps, cost projections, and automation features tailored to small business budgets."
     },
     {
-        "name": "Dana",
-        "role": "Editor and Scheduler",
-        "goal": "To ensure the newsletter is polished and scheduled for distribution.",
-        "backstory": "An experienced editor with a keen eye for detail and a strong background in project management.",
-        "task": "Review the newsletter draft for clarity, coherence, and correctness. Schedule the newsletter for distribution to the mailing list.",
-        "output": "A final version of the newsletter with no errors, and a scheduled distribution date and time."
+        "name": "Liam",
+        "role": "Analytics & Automation Consultant",
+        "goal": "To help solopreneurs and startups leverage data and automation to optimize their operations and improve customer engagement.",
+        "backstory": "With a background in startups, Liam focuses on affordable analytics and automation tools that help small businesses track growth and customer behavior.",
+        "task": "Implement an automated analytics system to track customer engagement and sales metrics for a small online business.",
+        "output": "A dashboard providing real-time data on key performance indicators (KPIs), integrated with automated email and CRM workflows."
+    },
+    {
+        "name": "Olivia",
+        "role": "Digital Marketing & Growth Consultant",
+        "goal": "To help small businesses and solopreneurs scale their operations through effective digital marketing strategies.",
+        "backstory": "A digital marketing expert, Olivia has worked with early-stage startups to build brand awareness, acquire customers, and drive growth.",
+        "task": "Develop and execute a digital marketing strategy, including SEO, social media, and email campaigns, for a small business looking to expand its customer base.",
+        "output": "A comprehensive digital marketing plan with detailed timelines, budget allocations, and projected ROI, focusing on lead generation and brand growth."
     }
 ]
+
 
 # Initialize lists to store the details of each agent
 namelist = []

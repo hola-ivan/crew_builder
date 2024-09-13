@@ -26,20 +26,56 @@ st.set_page_config(page_title="Autonomous Crew Builder", layout="wide")
 
 # Custom CSS for aesthetics
 st.markdown("""
-    <style>
-        .main { background-color: #f4ebd0; }
-        .stButton>button { background-color: #ffcc53; color: #122620; }
-        .stTextInput>div>div>input { color: #122620; }
-        .stTextInput>div>div>label { color: #122620; }
-        .stTextArea>div>div>textarea { color: #122620; }
-        .stTextArea>div>div>label { color: #122620; }
-    </style>
+<style>
+    /* Main background in a light shade of white */
+    .main { 
+        background-color: #f5f7fa; /* light white-blue */
+    }
+
+    /* Button styling with modern indigo */
+    .stButton>button { 
+        background-color: #4f46e5; /* indigo */
+        color: #ffffff; /* white */
+        border-radius: 5px;
+        border: none;
+        padding: 10px 20px;
+    }
+
+    /* Text input field styling with dark blue text */
+    .stTextInput>div>div>input { 
+        color: #1e3a8a; /* dark blue */
+        background-color: #e0f2fe; /* light blue */
+        border-radius: 5px;
+        padding: 5px;
+    }
+
+    /* Label styling for input fields */
+    .stTextInput>div>div>label { 
+        color: #3b82f6; /* medium blue */
+        font-weight: bold;
+    }
+
+    /* Textarea styling */
+    .stTextArea>div>div>textarea { 
+        color: #1e3a8a; /* dark blue */
+        background-color: #e0f2fe; /* light blue */
+        border-radius: 5px;
+        padding: 5px;
+    }
+
+    /* Label styling for text areas */
+    .stTextArea>div>div>label { 
+        color: #3b82f6; /* medium blue */
+        font-weight: bold;
+    }
+</style>
+
 """, unsafe_allow_html=True)
 
 # Define collapsible sidebar sections
 with st.sidebar:
     with st.expander("Contact", expanded=True):
-        st.write("For any inquiries, contact me at [blog@holaivan.tech](mailto:blog@holaivan.tech)")
+        st.write("For any inquiries, contact me at [blog@holaivan.tech](mailto:effiwebsolutions@holaivan.tech)")
 
     with st.expander("How to use", expanded=False):
         st.write("This app allows you to create an autonomous crew of agents that can work together to achieve a common goal. Define the number of agents, assign them roles, goals, backstories, tasks, and expected outputs. The agents will work sequentially to achieve the common goal, and the app will display the output of each agent.")
@@ -246,4 +282,4 @@ else:
 
 # Add a call to action to contact
 st.markdown("---")
-st.write("If you have any questions or need assistance, feel free to contact us at [blog@holaivan.tech](mailto:blog@holaivan.tech).")
+st.write("If you have any questions or need assistance, feel free to contact me at [effiwebsolutions@holaivan.tech](mailto:effiwebsolutions@holaivan.tech).")
