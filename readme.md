@@ -1,45 +1,66 @@
-# Autonomous Crew Builder
+# effiweb solutions Consulting Tool
 
-Welcome to the **Autonomous Crew Builder**! This application helps you create a team of AI agents that can work together to achieve a common goal.
+The effiweb solutions **Consulting Tool** helps build autonomous agent crews to simulate a consulting team. This tool is designed for educational purposes and not for professional consulting.
 
-## What is This?
+## Features
 
-The Autonomous Crew Builder allows you to set up a virtual team of AI agents. Each agent can have a specific role, goal, backstory, and task. They will collaborate in a sequence to accomplish a shared objective, and you can see the results of their work in real-time.
+- Create a team of AI agents with specific roles and tasks.
+- Customize agents' goals, tasks, and backstories based on business context.
+- Generate detailed PDF reports of the consulting process.
+- Interactive UI with real-time results.
 
-## How to Use
+## Installation
 
-1. **Visit the App**:
-   - Go to the ready-to-use version: [crewbuilder.streamlit.app](https://crewbuilder.streamlit.app/)
+1. Clone the repository:
+    ```sh
+    git clone https://github.com/your-repo/effiweb-solutions-consulting-tool.git
+    cd effiweb-solutions-consulting-tool
+    ```
+
+2. Install the required dependencies:
+    ```sh
+    pip install -r requirements.txt
+    ```
+
+## Usage
+
+1. **Run the Application**:
+    ```sh
+    streamlit run app.py
+    ```
 
 2. **Set Up Your Crew**:
-   - Enter the number of agents you want in your crew (between 1 and 10).
-   - For each agent, provide:
-     - **Name**: The agent's name.
-     - **Role**: The agent's role in the team.
-     - **Goal**: The objective the agent aims to achieve.
-     - **Backstory**: A brief background story for the agent.
-     - **Task**: The specific task the agent will perform.
-     - **Expected Output**: What you expect the agent to produce.
+    - Enter the business context, challenges, and budget.
+    - Specify the number of agents (default is 3).
+    - Click the **Start** button to generate results.
 
-3. **Create and Run Your Crew**:
-   - Click the **Create Crew** button.
-   - Watch as the agents work together to achieve their goals.
-   - See the output for each agent after the crew completes its work.
+3. **View Results**:
+    - The agents will work together to provide solutions based on the provided context.
+    - Download the detailed PDF report of the consulting process.
 
-## Key Features
+## Configuration
 
-- **Easy Setup**: Simply enter details for your agents and create your crew.
-- **Sequential Workflow**: Agents work in a defined order to achieve the common goal.
-- **Real-Time Results**: View the output of each agent immediately after the process is complete.
+1. **API Keys**:
+    - Add your API keys to the Streamlit secrets:
+        ```sh
+        streamlit secrets set SERPER_API_KEY "your_serper_api_key"
+        streamlit secrets set GROQ_API_KEY "your_groq_api_key"
+        ```
 
-## Benefits
+## Example
 
-- **Collaboration**: Simulates teamwork among AI agents.
-- **Customizable**: Define roles, goals, and tasks tailored to your needs.
-- **Interactive**: Provides an engaging way to see how AI agents can work together.
+1. **Business Context**:
+    - Provide details about your business, challenges, and budget.
 
-## Get Started
+2. **Agents**:
+    - Example agents include:
+        - **Tlaloc**: Digital Strategy Consultant
+        - **Arminius**: Analytics & Automation Consultant
+        - **Thusnelda**: Digital Marketing & Growth Consultant
 
-To start building your autonomous crew, visit [crewbuilder.streamlit.app](https://crewbuilder.streamlit.app/) and follow the simple steps.
+3. **Output**:
+    - The agents will generate a digital strategy plan, analytics dashboard, and marketing plan based on the provided context.
 
-Enjoy creating your AI-powered team!
+## Contact
+
+Questions? Contact: [effiwebsolutions@holaivan.tech](mailto:effiwebsolutions@holaivan.tech)
