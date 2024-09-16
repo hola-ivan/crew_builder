@@ -17,7 +17,9 @@ import time
 import threading
 
 
-os.environ["SERPER_API_KEY"] = "b24b3c1b64b69f8af2616fa008942e04f5df6f28" # serper.dev API key
+# Load API key from secrets
+serper_api_key = st.secrets["SERPER_API_KEY"]
+os.environ["SERPER_API_KEY"] = serper_api_key  # serper.dev API key
 search_tool = SerperDevTool()
 web_rag_tool = WebsiteSearchTool()
 
