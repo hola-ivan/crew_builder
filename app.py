@@ -60,7 +60,8 @@ st.title("effiweb solutions Consulting Tool")
 # API Key setup
 groq_api_key = st.secrets["GROQ_API_KEY"]
 client = Groq(api_key=groq_api_key)
-GROQ_LLM = ChatGroq(api_key=groq_api_key, model="llama-3.1-8b-instant")
+# GROQ_LLM = ChatGroq(api_key=groq_api_key, model="llama-3.1-8b-instant")
+GROQ_LLM = ChatGroq(api_key=groq_api_key, model="llama-3.1-70b-versatile")
 
 # Input: Business context and challenges
 business_context = st.text_area('Please tell us about **your Business, your Challenges, and your Budget**:', 
