@@ -11,3 +11,5 @@ groq
 langchain-groq
 tomli
 fpdf
+markdown2
+HTMLMixin
