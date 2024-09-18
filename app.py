@@ -60,8 +60,8 @@ st.title("effiweb solutions Consulting Tool")
 # API Key setup
 groq_api_key = st.secrets["GROQ_API_KEY"]
 client = Groq(api_key=groq_api_key)
-# GROQ_LLM = ChatGroq(api_key=groq_api_key, model="llama-3.1-8b-instant")
-GROQ_LLM = ChatGroq(api_key=groq_api_key, model="llama-3.1-70b-versatile")
+GROQ_LLM = ChatGroq(api_key=groq_api_key, model="llama-3.1-8b-instant")
+# GROQ_LLM = ChatGroq(api_key=groq_api_key, model="llama-3.1-70b-versatile")
 
 # Input: Business context and challenges
 business_context = st.text_area('Please tell us about **your Business, your Challenges, and your Budget**:', 
@@ -153,7 +153,7 @@ if st.button('Start'):
                 goal=agent_data['goal'],
                 backstory="",
                 llm=GROQ_LLM,
-                verbose=True,
+                verbose=False,
                 allow_delegation=True,
                 max_iter=6,
                 memory=True
@@ -167,8 +167,11 @@ if st.button('Start'):
                 task = Task(description=task_description, expected_output=task_output, agent=agent)
                 agentlist.append(agent)
                 tasklist.append(task)
-
-        if tasklist:
-            crew = Crew(agents=agentlist, tasks=tasklist, process=Process.sequential, full_output=True)
-            results = crew.kickoff(inputs={'business_context': business_context})
-            st.write(results)  # Display the result from the crew after completion
+                if tasklist:
+                    crew = Crew(agents=agentlist, tasks=tasklist, process=Process.sequential, full_output=True)
+                    results = crew.kickoff(inputs={'business_context': business_context})
+                    
+                    # Display the result in markdown format with collapsible sections
+                    for i, result in enumerate(results, 1):
+                        st.markdown(f"### Result {i}")
+                        st.markdown(f"<details><summary>Click to expand</summary><p>{result}</p></details>", unsafe_allow_html=True)
