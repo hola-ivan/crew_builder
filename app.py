@@ -142,6 +142,8 @@ def run_consulting_process(business_context: str, agent_data: List[Dict], client
             goal=data['goal'].format(business_context),
             backstory=data['backstory'],
             verbose=False,
+            # allow_delegation=True,
+            # max_iter=4
         )
         task = Task(
             description=data['task'].format(business_context),
@@ -156,11 +158,11 @@ def run_consulting_process(business_context: str, agent_data: List[Dict], client
     return results
 
 # Function to display results in a simpler format
-def display_results(results: List[str]):
+def display_results(results: List[Dict[str, str]]):
     if results:
         for i, result in enumerate(results, 1):
             st.subheader(f"Strategy {i}")
-            st.markdown(result)
+            st.write(result['output'])
     else:
         st.warning("No results were generated. Please try again with more detailed input.")
 
